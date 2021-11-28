@@ -1,6 +1,6 @@
 # BullsXBears UI
 
-![BullsXBears UI](https://github.com/moebiusprogram/bullsxbears/blob/master/img/logo_jpg.jpg)
+![BullsXBears UI](https://github.com/moebiusprogram/bullx/blob/master/img/logo_jpg.jpg)
 
 
 ## License
