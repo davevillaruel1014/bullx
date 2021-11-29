@@ -58,7 +58,8 @@ export default class Header extends Component {
                                     onClick={ this.handleBearBtn }
                                     >Bears</a>
                                   </div>
-                                  <a className="sc-pVTFL gkCPqg nav-link" href="https://bullsxbears.io/app">hibrid</a><a href="https://store.bullsxbears.io/" target="_blank" className="sc-iCfMLu dTNgHv">merch</a><a href="https://store.bullsxbears.io/" target="_blank" className="sc-iCfMLu dTNgHv">app</a>
+                                  <a className="sc-pVTFL gkCPqg nav-link" href="https://bullsxbears.io/app">hibrid</a>
+                                  <a href="https://store.bullsxbears.io/" target="_blank" className="sc-iCfMLu dTNgHv">app</a>
                             </div>
                             <div className="sc-crHmcD bBHVio">
                             <button 

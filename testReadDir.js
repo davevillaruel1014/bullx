@@ -187,6 +187,7 @@ for (var i = 0; i < 5; i++) {
   const bodyArray = keys(bodies)
   const eyesArray = keys(eyes)
   const headsArray = keys(heads)
+  const mouthArray = keys(mouth)
   const accesoriesArray = keys(accesories)
 
   const background = `traits/${ getImageName(backgroundArray) }.png`
@@ -194,10 +195,11 @@ for (var i = 0; i < 5; i++) {
   const body = `traits/${ getImageName(bodyArray) }.png`
   const eye = `traits/${ getImageName(eyesArray) }.png`
   const head = `traits/${ getImageName(headsArray) }.png`
+  const mth = `traits/${ getImageName(mouthArray) }.png`
   const accesory = `traits/${ getImageName(accesoriesArray) }.png`
 
 
-  mergeImages([background,skin,body,head,eye,accesory], {
+  mergeImages([background,skin,body,head,eye,accesory,mth], {
     Canvas: Canvas,
     Image: Image
   })
@@ -219,7 +221,8 @@ for (var i = 0; i < 5; i++) {
       body:body.replace("traits/","").replace(".png",""),
       eyes:eye.replace("traits/","").replace(".png",""),
       head:head.replace("traits/","").replace(".png",""),
-      accesories:accesory.replace("traits/","").replace(".png","")
+      accesories:accesory.replace("traits/","").replace(".png",""),
+      mouth:mth.replace("traits/","").replace(".png","")
     }
     fs.writeFile(`${token}.json`, JSON.stringify(data), (err) => {
       if (err) {
