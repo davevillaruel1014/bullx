@@ -195,8 +195,9 @@ for (var i = 0; i < 5; i++) {
   const body = `traits/${ getImageName(bodyArray) }.png`
   const eye = `traits/${ getImageName(eyesArray) }.png`
   const head = `traits/${ getImageName(headsArray) }.png`
-  const mth = `traits/${ getImageName(mouthArray) }.png`
   const accesory = `traits/${ getImageName(accesoriesArray) }.png`
+  const mth = `traits/${ getImageName(mouthArray) }.png`
+
 
 
   mergeImages([background,skin,body,head,eye,accesory,mth], {
@@ -222,7 +223,8 @@ for (var i = 0; i < 5; i++) {
       eyes:eye.replace("traits/","").replace(".png",""),
       head:head.replace("traits/","").replace(".png",""),
       accesories:accesory.replace("traits/","").replace(".png",""),
-      mouth:mth.replace("traits/","").replace(".png","")
+      mouth:mth.replace("traits/","").replace(".png",""),
+      attack: getRandomInt(1,15)
     }
     fs.writeFile(`${token}.json`, JSON.stringify(data), (err) => {
       if (err) {

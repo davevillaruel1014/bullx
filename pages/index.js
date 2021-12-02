@@ -5,13 +5,22 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import TokenCard from '../components/tokencard'
+import { InView } from 'react-intersection-observer';
 
-
+const showEach = 50
 
 export default class Home extends Component{
 
   constructor(props) {
     super(props);
+  }
+
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleScroll);
+  }
+
+  componentWillUnmount() {
+      window.removeEventListener('scroll', this.handleScroll);
   }
 
   state = {
@@ -20,8 +29,9 @@ export default class Home extends Component{
     openedActive: false,
     bullsActive: true,
     searchValue:"",
-    unopenedBulls: 10000,
-    unopenedBears: 10000
+    unopenedBulls: 9999,
+    unopenedBears: 9999,
+    bullsArray: Array.from(Array(showEach),(x,i)=>i)
   }
 
   handleBullActive = (bullsActive) => {
@@ -44,6 +54,16 @@ export default class Home extends Component{
     this.setState({searchValue:e.target.value})
   }
 
+  handleEnd = (inView, entry) => {
+    console.log('Inview:', inView)
+
+    if(inView) {
+      const visibleBulls = this.state.bullsArray.length
+      const bullsArray = Array.from(Array(visibleBulls + showEach),(x,i)=>i)
+      this.setState({bullsArray})
+    }
+  }
+
   render(){
 
       const {
@@ -54,23 +74,33 @@ export default class Home extends Component{
         searchValue,
         unopenedBulls,
         unopenedBears,
+        bullsArray
       } = this.state
 
-      const BullsUnopen = []
-      const BullsOpen = []
-      const BearsUnopen = []
-      const BearsOpen = []
 
-      for (var i = 0; i < 5; i++) {
-          BullsUnopen.push(<TokenCard type="BULL" key={i} index={i + 1} />)
-      }
+      const BullsOpen = []
+      const BearsOpen = []
+      const BearsUnopen = []
+
+      
+      const maxColumns = 5
+      const rows = [...Array( Math.ceil(bullsArray.length / maxColumns) )];
+      // chunk the products into the array of rows
+      const bullsRows = rows.map( (row, idx) => 
+        bullsArray.slice(idx * maxColumns, idx * maxColumns + maxColumns) )
+      // map the rows as div.row
+      const BullsUnopen = bullsRows.map((row, idx) => (
+          <div className="row" key={idx} >
+            { row.map( bull => <TokenCard type="BULL" key={bull} index={bull + 1} /> )}
+          </div> )
+      )
 
       for (var i = 0; i < 5; i++) {
           BearsUnopen.push(<TokenCard type="BEARS" key={i} index={i + 1} />)
       }
 
       return (
-        <div >
+        <div>
           <Head>
             <title>Bulls X Bears</title>
             <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -123,11 +153,11 @@ export default class Home extends Component{
                                           style={{ display:(bullsActive)?'block':'none' }}
                                           >
                                             <div className="row">
-                                                <div className="sc-hZyDwR kVWZbf">Unopened { unopenedBulls } / 10000</div>
+                                                <div className="sc-hZyDwR kVWZbf">Unopened { unopenedBulls } / 9999</div>
                                             </div>
                                             {
                                               (!openedActive)?
-                                              (<div className="row">{ BullsUnopen }</div>):
+                                              (BullsUnopen):
                                               (<div className="row">{ BullsOpen }</div>)
                                             }
                                           </div>
@@ -135,7 +165,7 @@ export default class Home extends Component{
                                            style={{ display:(bullsActive)?'none':'block' }}
                                            >
                                             <div className="row">
-                                                <div className="sc-hZyDwR kVWZbf">Unopened { unopenedBears } / 10000</div>
+                                                <div className="sc-hZyDwR kVWZbf">Unopened { unopenedBears } / 9999</div>
                                             </div>
                                             {
                                               (!openedActive)?
@@ -150,7 +180,12 @@ export default class Home extends Component{
                       </div>
                       <div className="notifications-wrapper"></div>
                   </main>
-                  <Footer />
+                  <InView 
+                    as="div" 
+                    onChange={ this.handleEnd }
+                    >
+                    <Footer />
+                  </InView>
               </div>
           </div>
           </main>
