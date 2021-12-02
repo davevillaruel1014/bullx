@@ -15,14 +15,6 @@ export default class Home extends Component{
     super(props);
   }
 
-  componentDidMount() {
-    window.addEventListener('scroll', this.handleScroll);
-  }
-
-  componentWillUnmount() {
-      window.removeEventListener('scroll', this.handleScroll);
-  }
-
   state = {
     active: "jdnvCT",
     inactive: "iVxcmt",
@@ -80,8 +72,6 @@ export default class Home extends Component{
 
       const BullsOpen = []
       const BearsOpen = []
-      const BearsUnopen = []
-
       
       const maxColumns = 5
       const rows = [...Array( Math.ceil(bullsArray.length / maxColumns) )];
@@ -95,9 +85,11 @@ export default class Home extends Component{
           </div> )
       )
 
-      for (var i = 0; i < 5; i++) {
-          BearsUnopen.push(<TokenCard type="BEARS" key={i} index={i + 1} />)
-      }
+      const BearsUnopen = bullsRows.map((row, idx) => (
+          <div className="row" key={idx} >
+            { row.map( bear => <TokenCard type="BEAR" key={bear} index={bear + 1} /> )}
+          </div> )
+      )
 
       return (
         <div>
@@ -169,7 +161,7 @@ export default class Home extends Component{
                                             </div>
                                             {
                                               (!openedActive)?
-                                              (<div className="row">{ BearsUnopen }</div>):
+                                              (BearsUnopen):
                                               (<div className="row">{ BearsOpen }</div>)
                                             }
                                           </div>
