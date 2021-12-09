@@ -285,8 +285,25 @@ for (var i = 0; i < traitList.length; i++) {
 
 const bulls = []
 
+const merge = async (i,toMerge,metadata) => {
+    return new Promise((resolve, reject) =>{
+        mergeImages(toMerge, {
+          Canvas: Canvas,
+          Image: Image
+        })
+        .then(b64 => {
+          var base64Data = b64.replace(/^data:image\/png;base64,/, "")
 
-const generate = (i) => {
+          const token = `results/token#${ i + 1 }`
+          
+          fs.writeFileSync(`${token}.png`, base64Data, 'base64')
+          fs.writeFileSync(`${token}.json`, JSON.stringify(metadata))
+        })
+    })
+}
+
+
+const generate = async (i) => {
 
     console.log("generate",i)
     const backgroundImage = images["background"][i]
@@ -319,46 +336,27 @@ const generate = (i) => {
     const accesoriesPath = `traits/${ accesoriesImage }.png`
     const mouthPath = `traits/${ mouthImage }.png`
 
-    mergeImages([
-        backgroundPath,
-        skinPath,
-        bodyPath,
-        headPath,
-        eyesPath,
-        accesoriesPath,
-        mouthPath
-        ], {
-      Canvas: Canvas,
-      Image: Image
-    })
-    .then(b64 => {
-      var base64Data = b64.replace(/^data:image\/png;base64,/, "")
-
-      const token = `results/token#${ i + 1 }`
-      
-      fs.writeFile(`${token}.png`, base64Data, 'base64', function(err) {
-        if (err) {
-          console.log(err)  
-        }
-      })
-      
-      fs.writeFile(`${token}.json`, JSON.stringify(metadata), (err) => {
-        if (err) {
-          console.log(err)  
-        }
-      })
-    })
-}
-
-for (var i = 0; i < 200; i++) {
-    generate(i)
+    await merge(i,[
+            backgroundPath,
+            skinPath,
+            bodyPath,
+            headPath,
+            eyesPath,
+            accesoriesPath,
+            mouthPath
+            ],metadata)
 }
 
 /*
-for(var i=0; i < totalTokens; i++){
-    (function(item){
-        setTimeout(function(){
-            generate(item)
-        });
-    })(i);
+for (var i = 0; i < 200; i++) {
+    generate(i)
 }*/
+
+
+for(var i=0; i < totalTokens; i++){
+    ((item) => {
+        setTimeout( async() => {
+            await generate(item)
+        })
+    })(i)
+}
