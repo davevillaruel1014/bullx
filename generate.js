@@ -288,6 +288,7 @@ const bulls = []
 
 const generate = (i) => {
 
+    console.log("generate",i)
     const backgroundImage = images["background"][i]
     const skinImage = images["skin"][i]
     const bodyImage = images["body"][i]
