@@ -349,7 +349,17 @@ const generate = (i) => {
     })
 }
 
+/*
 for (var i = 0; i < totalTokens; i++) {
     console.log("Generating",i)
     generate(i)
+}
+*/
+
+for(var i=0; i < totalTokens; i++){
+    (function(item){
+        setTimeout(function(){
+            generate(item)
+        });
+    })(i);
 }
