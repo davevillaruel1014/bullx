@@ -7,10 +7,7 @@ const { Canvas, Image } = require('canvas')
 const traits = {}
 const images = {}
 const results = []
-const tokenIDs = []
 const totalTokens = 9999
-const generatedBulls = []
-const generatedBackgrounds = []
 
 const traitList = ["background", "skin", "body", "head", "eyes", "accesories", "mouth"]
 
@@ -187,16 +184,6 @@ const getImageName = (trait) => {
       const generatedByType = singleTrait.generated[image]
       const totalByType = singleTrait.totalByName[image]
 
-      /*
-      console.log(
-        "generating",
-        totalByType,
-        generatedByType, 
-        random, 
-        singleTrait.imagesArray.length,
-        image
-      )*/
-
     
       if(generatedByType < totalByType) {
         generated = true
@@ -204,7 +191,6 @@ const getImageName = (trait) => {
         return image
       }
       else {
-        //console.log("removed",results)
         singleTrait.imagesArray = removeFromArray(singleTrait.imagesArray,singleTrait.imagesArray[random])
         results.push({name:singleTrait.imagesArray[random],totalByType,generatedByType})
       }
@@ -216,22 +202,12 @@ const calculateTotal = (collection, name) => {
     return parseInt(collection[name] * 9999 / 100)
 }
 
-const calculateGenerated = (type, name) => {
-
-    const generated = generatedBulls.filter((elem) => {
-        return elem[type] === name
-    })
-    return generated.length
-}
 
 const removeFromArray = (typeArray, name) => {
     return typeArray.filter((elem) => {
         return elem !== name
     })
 }
-
-//console.log(results)
-//console.log(generatedBackgrounds[generatedBackgrounds.length - 1])
 
 const initTraits = () => {
 
@@ -280,10 +256,6 @@ const generateBullsImages = () => {
   }
 }
 
-
-initTraits()
-generateBullsImages()
-
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
 
@@ -303,96 +275,81 @@ function shuffle(array) {
 }
 
 
-shuffle(images["eyes"])
-
-console.log(images["eyes"][9988])
-console.log(images["eyes"][9989])
-console.log(images["eyes"][9990])
-console.log(images["eyes"][9991])
-console.log(images["eyes"][9992])
-console.log(images["eyes"][9993])
-console.log(images["eyes"][9994])
-console.log(images["eyes"][9995])
-console.log(images["eyes"][9996])
-console.log(images["eyes"][9997])
-console.log(images["eyes"][9998])
-
-return
+initTraits()
+generateBullsImages()
 
 
-for (var i = 0; i < totalTokens; i++) {
+for (var i = 0; i < traitList.length; i++) {
+    shuffle(images[traitList[i]])
+}
 
-    const background = getImageName("background")
-    /*
-    const skin = getImageName(skinArray)
-    const body = getImageName(bodyArray)
-    const eye = getImageName(eyesArray) 
-    const head = getImageName(headsArray)
-    const accesory = getImageName(accesoriesArray)
-    const mth = getImageName(mouthArray)*/
-
-    const backgroundPath = `traits/${ background }.png`
-    /*const skinPath = `traits/${ skin }.png`
-    const bodyPath = `traits/${ body }.png`
-    const eyePath = `traits/${ eye }.png`
-    const headPath = `traits/${ head }.png`
-    const accesoryPath = `traits/${ accesory }.png`
-    const mthPath = `traits/${ mth }.png`*/
+const bulls = []
 
 
+const generate = (i) => {
 
-    /*
-    generatedBulls.push(data)
-    const data = {
-        id: `${ i + 1}`,
-        name: ``,
-        background: background,
-        /*skin:skin,
-        body:body,
-        eyes:eye,
-        head:head,
-        accesories:accesory,
-        mouth:mth,
+    const backgroundImage = images["background"][i]
+    const skinImage = images["skin"][i]
+    const bodyImage = images["body"][i]
+    const eyesImage = images["eyes"][i]
+    const headImage = images["head"][i]
+    const accesoriesImage = images["accesories"][i]
+    const mouthImage = images["mouth"][i]
+
+     const metadata = {
+        name: `${ i + 1}`,
+        background: backgroundImage,
+        skin:skinImage,
+        body:bodyImage,
+        eyes:eyesImage,
+        head:headImage,
+        accesories:accesoriesImage,
+        mouth:mouthImage,
         attack: getRandomInt(1, 15)
     }
-    mergeImages([background,skin,body,head,eye,accesory,mth], {
+
+    bulls.push(metadata)
+
+    const backgroundPath = `traits/${ backgroundImage }.png`
+    const skinPath = `traits/${ skinImage }.png`
+    const bodyPath = `traits/${ bodyImage }.png`
+    const eyesPath = `traits/${ eyesImage }.png`
+    const headPath = `traits/${ headImage }.png`
+    const accesoriesPath = `traits/${ accesoriesImage }.png`
+    const mouthPath = `traits/${ mouthImage }.png`
+
+    mergeImages([
+        backgroundPath,
+        skinPath,
+        bodyPath,
+        headPath,
+        eyesPath,
+        accesoriesPath,
+        mouthPath
+        ], {
       Canvas: Canvas,
       Image: Image
     })
     .then(b64 => {
       var base64Data = b64.replace(/^data:image\/png;base64,/, "")
 
-      const number = getRandomInt(0,1000)
-      const token = `results/token#${ number }`
+      const token = `results/token#${ i + 1 }`
       
       fs.writeFile(`${token}.png`, base64Data, 'base64', function(err) {
         if (err) {
           console.log(err)  
         }
       })
-      const data = {
-        name: `Token #${ number }`,
-        background:background.replace("traits/","").replace(".png",""),
-        skin:skin.replace("traits/","").replace(".png",""),
-        body:body.replace("traits/","").replace(".png",""),
-        eyes:eye.replace("traits/","").replace(".png",""),
-        head:head.replace("traits/","").replace(".png",""),
-        accesories:accesory.replace("traits/","").replace(".png",""),
-        mouth:mth.replace("traits/","").replace(".png",""),
-        attack: getRandomInt(1,15)
-      }
-      fs.writeFile(`${token}.json`, JSON.stringify(data), (err) => {
+      
+      fs.writeFile(`${token}.json`, JSON.stringify(metadata), (err) => {
         if (err) {
           console.log(err)  
         }
       })
     })
-    */
 }
 
-for (var i = 0; i < generatedBulls.length; i++) {
-  //if(generatedBulls[i].background === undefined )
-  console.log(generatedBulls[i])
+for (var i = 0; i < totalTokens; i++) {
+    console.log("Generating",i)
+    generate(i)
 }
-
-console.log(results)
