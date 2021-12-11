@@ -127,20 +127,68 @@ export default class Home extends Component{
           <main>
             <div id="root">
               <div>
-                  <button id="myBtn" onClick={ this.openModal }>Open Modal</button>
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <span class="close">&times;</span>
-                      <h2>Modal Header</h2>
+                  <div className="fade modal show" style={{ display:(modalIsOpen)?"block":"none" }}>
+                    <div className="modal-dialog modal-lg modal-dialog-centered">
+                      <div className="modal-content">
+                        <div className="modal-header"><button type="button" className="close" onClick={ this.closeModal }><span aria-hidden="true">×</span></button></div>
+                        <div className="show-grid modal-body">
+                            <div className="sc-jHkVzv eCkbRk">
+                                <div className="row">
+                                    <div className="col-md-6">
+                                        <div className="sc-bQtKYq cIopet">
+                                            <h4>DOGGY #0</h4>
+                                        </div>
+                                        <div className="sc-fmBCVi jLocsb" style={{ borderRadius:"10px" }}>
+                                        <img src="https://arweave.net/yrJjOZcUsIXBtKBMDM2_nLBjpMIImiDrtTlvK1Ak6K8" 
+                                        alt="" 
+                                        className="sc-fXEqDS cLGYmY" 
+                                        style={{ width:"100%", borderRadius:"10px" }}
+                                        />
+                                        </div><button className="sc-FNXRL gBCJeY">view on opensea</button>
+                                    </div>
+                                    <div className="col-md-1"></div>
+                                    <div className="col-md-4">
+                                        <h4 className="sc-jWUzzU eevPcX">rarity score: <span>71.0756</span></h4>
+                                        <h4 className="sc-jWUzzU eevPcX">Rarity rank: <span>7034</span></h4>
+                                        <div className="sc-lkgTHX kctDZO">
+                                            <div className="sc-eFegNN kPXwHm">
+                                                <h5>hats</h5>
+                                                <h6>Stuntman Helmet</h6>
+                                            </div>
+                                            <div className="sc-eFegNN kPXwHm">
+                                                <h5>mouth</h5>
+                                                <h6>Beauty</h6>
+                                            </div>
+                                            <div className="sc-eFegNN kPXwHm">
+                                                <h5>clothing</h5>
+                                                <h6>Iron Collar</h6>
+                                            </div>
+                                            <div className="sc-eFegNN kPXwHm">
+                                                <h5>fur</h5>
+                                                <h6>Blue</h6>
+                                            </div>
+                                            <div className="sc-eFegNN kPXwHm">
+                                                <h5>eyewear</h5>
+                                                <h6>Polarized</h6>
+                                            </div>
+                                            <div className="sc-eFegNN kPXwHm">
+                                                <h5>background</h5>
+                                                <h6>Gray</h6>
+                                            </div>
+                                            <div className="sc-eFegNN kPXwHm">
+                                                <h5>eyes</h5>
+                                                <h6>Covered</h6>
+                                            </div>
+                                        </div>
+                                        <h4 className="sc-jWUzzU eevPcX">PUPPY: <span>Not Minted</span></h4>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="modal-body">
-                      <p>Some text in the Modal Body</p>
-                      <p>Some other text...</p>
-                    </div>
-                    <div class="modal-footer">
-                      <h3>Modal Footer</h3>
                     </div>
                   </div>
+
                   <Header handleBullActive={ this.handleBullActive } />
                   <main className="sc-bYoBSM hmXtHk">
                       <div className="react-reveal fadeInRight" style={{animationDuration:"1000ms",animationDelay:"0ms",animationIterationCount:"1",opacity:"1"}}>
