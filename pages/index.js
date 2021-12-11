@@ -6,7 +6,7 @@ import Header from '../components/header'
 import Footer from '../components/footer'
 import TokenCard from '../components/tokencard'
 import { InView } from 'react-intersection-observer'
-import Modal from 'react-bootstrap4-modal'
+
 
 const showEach = 50
 
@@ -125,9 +125,22 @@ export default class Home extends Component{
             <link rel="stylesheet" type="text/css" href="styles.css" />
           </Head>
           <main>
-            <button onClick={ this.openModal }>Modal</button>
             <div id="root">
               <div>
+                  <button id="myBtn" onClick={ this.openModal }>Open Modal</button>
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <span class="close">&times;</span>
+                      <h2>Modal Header</h2>
+                    </div>
+                    <div class="modal-body">
+                      <p>Some text in the Modal Body</p>
+                      <p>Some other text...</p>
+                    </div>
+                    <div class="modal-footer">
+                      <h3>Modal Footer</h3>
+                    </div>
+                  </div>
                   <Header handleBullActive={ this.handleBullActive } />
                   <main className="sc-bYoBSM hmXtHk">
                       <div className="react-reveal fadeInRight" style={{animationDuration:"1000ms",animationDelay:"0ms",animationIterationCount:"1",opacity:"1"}}>
@@ -195,24 +208,6 @@ export default class Home extends Component{
                               </div>
                           </div>
                       </div>
-                      <Modal 
-                      visible={true} 
-                      onClickBackdrop={this.closeModal}>
-                        <div className="modal-header">
-                          <h5 className="modal-title">Red Alert!</h5>
-                        </div>
-                        <div className="modal-body">
-                          <p>Enemy vessel approaching!</p>
-                        </div>
-                        <div className="modal-footer">
-                          <button type="button" className="btn btn-secondary">
-                            Panic
-                          </button>
-                          <button type="button" className="btn btn-primary">
-                            Fire phasers
-                          </button>
-                        </div>
-                      </Modal>
                       <div className="notifications-wrapper"></div>
                   </main>
                   <InView 

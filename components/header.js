@@ -29,11 +29,6 @@ export default class Header extends Component {
 
     return (
     <div className="sc-gKclnd gOquVo">
-        <link 
-        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" 
-        rel="stylesheet" 
-        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" 
-        crossorigin="anonymous" />
         <nav style={{ zIndex:"10" }} className="menu-area navbar-dark bg-darks navbar navbar-expand-lg navbar-light">
             <div className="container">
                 <div style={{width:"100%"}} className="m-0 row">
