@@ -5,7 +5,8 @@ import styles from '../styles/Home.module.css'
 import Header from '../components/header'
 import Footer from '../components/footer'
 import TokenCard from '../components/tokencard'
-import { InView } from 'react-intersection-observer';
+import { InView } from 'react-intersection-observer'
+import Modal from 'react-bootstrap4-modal'
 
 const showEach = 50
 
@@ -23,6 +24,7 @@ export default class Home extends Component{
     searchValue:"",
     unopenedBulls: 9999,
     unopenedBears: 9999,
+    modalIsOpen:false,
     bullsArray: Array.from(Array(showEach),(x,i)=>i)
   }
 
@@ -56,6 +58,14 @@ export default class Home extends Component{
     }
   }
 
+  closeModal = () => {
+    this.setState({modalIsOpen:false})
+  }
+
+  openModal = () => {
+    this.setState({modalIsOpen:true})
+  }
+
   render(){
 
       const {
@@ -66,8 +76,21 @@ export default class Home extends Component{
         searchValue,
         unopenedBulls,
         unopenedBears,
-        bullsArray
+        bullsArray,
+        modalIsOpen
       } = this.state
+
+      /*
+      const customStyles = {
+        content: {
+          top: '50%',
+          left: '50%',
+          right: 'auto',
+          bottom: 'auto',
+          marginRight: '-50%',
+          transform: 'translate(-50%, -50%)',
+        },
+      };*/
 
 
       const BullsOpen = []
@@ -91,6 +114,7 @@ export default class Home extends Component{
           </div> )
       )
 
+
       return (
         <div>
           <Head>
@@ -101,6 +125,7 @@ export default class Home extends Component{
             <link rel="stylesheet" type="text/css" href="styles.css" />
           </Head>
           <main>
+            <button onClick={ this.openModal }>Modal</button>
             <div id="root">
               <div>
                   <Header handleBullActive={ this.handleBullActive } />
@@ -170,6 +195,24 @@ export default class Home extends Component{
                               </div>
                           </div>
                       </div>
+                      <Modal 
+                      visible={true} 
+                      onClickBackdrop={this.closeModal}>
+                        <div className="modal-header">
+                          <h5 className="modal-title">Red Alert!</h5>
+                        </div>
+                        <div className="modal-body">
+                          <p>Enemy vessel approaching!</p>
+                        </div>
+                        <div className="modal-footer">
+                          <button type="button" className="btn btn-secondary">
+                            Panic
+                          </button>
+                          <button type="button" className="btn btn-primary">
+                            Fire phasers
+                          </button>
+                        </div>
+                      </Modal>
                       <div className="notifications-wrapper"></div>
                   </main>
                   <InView 
