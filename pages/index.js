@@ -33,6 +33,10 @@ export default class Home extends Component{
     this.setState({ bullsActive,openedActive:false })
   }
 
+  handleOpenCard = (e) => {
+    console.log("opened card",e)
+  }
+
   handleOpenTab = (e) => {
     console.log("open",this.state.openedActive)
     this.setState({ openedActive:true })
@@ -104,7 +108,12 @@ export default class Home extends Component{
       // map the rows as div.row
       const BullsUnopen = bullsRows.map((row, idx) => (
           <div className="row" key={idx} >
-            { row.map( bull => <TokenCard type="BULL" key={bull} index={bull + 1} /> )}
+            { row.map( bull => <TokenCard 
+              type="BULL" 
+              key={bull} 
+              index={bull + 1} 
+              onClickCard={ this.handleOpenCard } 
+              /> )}
           </div> )
       )
 

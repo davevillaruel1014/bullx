@@ -1,5 +1,10 @@
 
 export default function TokenCard(props) {
+
+  const handleOpenCard = () => {
+    props.onClickCard(props.index)
+  }
+
   return (
 	<div className="sc-jLVpRp gIhSBE">
           <div className="sc-dZpvmy ehwNXq">
@@ -8,7 +13,7 @@ export default function TokenCard(props) {
               </div>
               <img src="img/nft.gif" alt={ `${ props.type } #${ props.index }` } />
               <div className="sc-ddnlvQ fUicWg">
-                  <div className="sc-jaSCiF iQTAMu">Open</div>
+                  <div className="sc-jaSCiF iQTAMu" onClick={ handleOpenCard }>Open</div>
               </div>
           </div>
       </div>
