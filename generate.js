@@ -347,7 +347,7 @@ const generate = async (i) => {
     if(eyesImage === "EYES_BLUELAZER" ||
        eyesImage === "EYES_PINKLAZER" ||
        eyesImage === "EYES_REDLAZER" ||
-       eyesImage === "EYES_CYBER" ||
+       eyesImage === "EYES_CYBER"
        ){
         await merge(i,[
                 backgroundPath,
