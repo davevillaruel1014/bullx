@@ -380,7 +380,7 @@ for (var i = 0; i < 200; i++) {
 }*/
 
 
-for(var i=0; i < 10; i++){
+for(var i=0; i < totalTokens; i++){
     ((item) => {
         setTimeout( async() => {
             await generate(item)
