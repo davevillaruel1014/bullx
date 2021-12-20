@@ -355,7 +355,7 @@ const generate = async (i) => {
                 wingsPath,
                 bodyPath,
                 accesoriesPath,
-                mouthPath
+                mouthPath,
                 headPath,
                 eyesPath,
                 ],metadata)
@@ -367,7 +367,7 @@ const generate = async (i) => {
                 bodyPath,
                 eyesPath,
                 accesoriesPath,
-                mouthPath
+                mouthPath,
                 headPath,
                 ],metadata)
     }
