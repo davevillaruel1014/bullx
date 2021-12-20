@@ -9,7 +9,7 @@ const images = {}
 const results = []
 const totalTokens = 9999
 
-const traitList = ["background", "skin", "body", "head", "eyes", "accesories", "mouth"]
+const traitList = ["background", "skin", "body", "head", "eyes", "accesories", "mouth","wings"]
 
 const data = {
     accesories: {
@@ -51,6 +51,7 @@ const data = {
         YELLOW_TOPAZ: 485
     },
     body: {
+        EMPTY:1003,
         BODY_ARMOR: 901,
         BODY_captain: 839,
         BODY_ethman_black_suit: 793,
@@ -59,21 +60,21 @@ const data = {
         BODY_FUTURE: 649,
         BODY_goku_suit: 609,
         BODY_golden_suit: 589,
-        BODY_GREENWINGS: 549,
+//        BODY_GREENWINGS: 549,
         BODY_GREYTRACKSUIT: 529,
         BODY_medieval_armor: 509,
         BODY_OVERALL: 489,
         BODY_pico_suit: 449,
         BODY_PINK_army: 274,
         BODY_police: 192,
-        BODY_rainbow_wings: 192,
+//        BODY_rainbow_wings: 192,
         BODY_RED_ARMYY: 189,
         BODY_romanian: 131,
         BODY_sweatshirt: 131,
         BODY_TRACKSUIT: 131,
-        BODY_WHITEWINGS: 131,
+//        BODY_WHITEWINGS: 131,
         BODY_xray_body: 131,
-        BODY_YELLOWWINGS: 131
+//        BODY_YELLOWWINGS: 131
     },
     skin: {
         SKIN_BLUE: 1068,
@@ -164,6 +165,13 @@ const data = {
         EYES_RED_LAZER: 192,
         EYES_SUN_GLASSES: 189,
         EYES_X: 433
+    },
+    wings:{
+        EMPTY: 8996,
+        BODY_GREENWINGS: 549,
+        BODY_rainbow_wings: 192,
+        BODY_WHITEWINGS: 131,
+        BODY_YELLOWWINGS: 131
     }
 }
 
@@ -259,14 +267,11 @@ const generateBullsImages = () => {
 function shuffle(array) {
   let currentIndex = array.length,  randomIndex;
 
-  // While there remain elements to shuffle...
   while (currentIndex != 0) {
 
-    // Pick a remaining element...
     randomIndex = Math.floor(Math.random() * currentIndex);
     currentIndex--;
 
-    // And swap it with the current element.
     [array[currentIndex], array[randomIndex]] = [
       array[randomIndex], array[currentIndex]];
   }
@@ -313,6 +318,7 @@ const generate = async (i) => {
     const headImage = images["head"][i]
     const accesoriesImage = images["accesories"][i]
     const mouthImage = images["mouth"][i]
+    const wingsImage = images["wings"][i]
 
      const metadata = {
         name: `${ i + 1}`,
@@ -323,6 +329,7 @@ const generate = async (i) => {
         head:headImage,
         accesories:accesoriesImage,
         mouth:mouthImage,
+        wings: wingsImage,
         attack: getRandomInt(1, 15)
     }
 
@@ -335,16 +342,36 @@ const generate = async (i) => {
     const headPath = `traits/${ headImage }.png`
     const accesoriesPath = `traits/${ accesoriesImage }.png`
     const mouthPath = `traits/${ mouthImage }.png`
+    const wingsPath = `traits/${ wingsImage }.png`
 
-    await merge(i,[
-            backgroundPath,
-            skinPath,
-            bodyPath,
-            headPath,
-            eyesPath,
-            accesoriesPath,
-            mouthPath
-            ],metadata)
+    if(eyesImage === "EYES_BLUELAZER" ||
+       eyesImage === "EYES_PINKLAZER" ||
+       eyesImage === "EYES_REDLAZER" ||
+       eyesImage === "EYES_CYBER" ||
+       ){
+        await merge(i,[
+                backgroundPath,
+                skinPath,
+                wingsPath,
+                bodyPath,
+                accesoriesPath,
+                mouthPath
+                headPath,
+                eyesPath,
+                ],metadata)
+    } else {
+        await merge(i,[
+                backgroundPath,
+                skinPath,
+                wingsPath,
+                bodyPath,
+                eyesPath,
+                accesoriesPath,
+                mouthPath
+                headPath,
+                ],metadata)
+    }
+
 }
 
 /*
