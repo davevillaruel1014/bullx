@@ -374,12 +374,6 @@ const generate = async (i) => {
 
 }
 
-/*
-for (var i = 0; i < 200; i++) {
-    generate(i)
-}*/
-
-
 for(var i=0; i < totalTokens; i++){
     ((item) => {
         setTimeout( async() => {
