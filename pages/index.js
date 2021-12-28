@@ -27,6 +27,7 @@ export default class Home extends Component{
     modalIsOpen:false,
     activeIndex: 0,
     info:{},
+    connectBtnText: "CONNECT WALLET",
     bullsArray: Array.from(Array(showEach),(x,i)=>i)
   }
 
@@ -75,6 +76,55 @@ export default class Home extends Component{
     this.setState({modalIsOpen:true,activeIndex: e,info})
   }
 
+  updateConnectButton = () => {
+      console.log("updating")
+
+     if(window.ethereum && 
+        window.ethereum.selectedAddress &&
+        window.ethereum.selectedAddress != ""){
+
+        const walletAddress = window.ethereum.selectedAddress
+        
+        const connectLabel = "Connected: " +
+          String(walletAddress).substring(0, 6) +
+          "..." +
+          String(walletAddress).substring(38)
+        
+        console.log("Selected Address", connectLabel)
+
+        this.setState({ connectBtnText: connectLabel })
+    } else {
+        this.setState({ connectBtnText: "CONNECT WALLET" })
+    }
+  }
+
+  connect = async () => {
+      console.log("Connecting")
+      if(window.ethereum){
+          try {
+            const addressArray = await window.ethereum.request({
+              method: "eth_requestAccounts",
+            })
+
+            this.updateConnectButton()
+
+            return window.ethereum.selectedAddress
+
+          } catch (err) {
+
+            const obj = {
+              address: "",
+              status: err.message,
+            }
+
+            console.log("Error",obj)          
+          }
+      } else {
+          console.log("ethereum not enabled")
+      }
+  }
+
+
   render(){
 
       const {
@@ -88,7 +138,8 @@ export default class Home extends Component{
         bullsArray,
         modalIsOpen,
         activeIndex,
-        info
+        info,
+        connectBtnText
       } = this.state
 
       console.log("info",info)
@@ -124,7 +175,6 @@ export default class Home extends Component{
             { row.map( bear => <TokenCard type="BEAR" key={bear} index={bear + 1} /> )}
           </div> )
       )
-
 
       return (
         <div>
@@ -236,7 +286,11 @@ export default class Home extends Component{
                     </div>
                   </div>
 
-                  <Header handleBullActive={ this.handleBullActive } />
+                  <Header 
+                    handleBullActive={ this.handleBullActive } 
+                    handleConnect={ this.connect }
+                    connectBtnText={ connectBtnText }
+                    />
                   <main className="sc-bYoBSM hmXtHk">
                       <div className="react-reveal fadeInRight" style={{animationDuration:"1000ms",animationDelay:"0ms",animationIterationCount:"1",opacity:"1"}}>
                           <div className="container">

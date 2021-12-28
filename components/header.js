@@ -66,8 +66,9 @@ export default class Header extends Component {
                             <div className="sc-crHmcD bBHVio">
                             <button 
                               type="button" 
+                              onClick={ this.props.handleConnect }
                               className="sc-egiyK hCVlEs btn btn-primary">
-                              CONNECT WALLET
+                              { this.props.connectBtnText }
                               </button>
                               </div>
                         </div>
