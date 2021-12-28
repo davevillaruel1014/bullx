@@ -25,6 +25,7 @@ export default class Home extends Component{
     unopenedBulls: 9999,
     unopenedBears: 9999,
     modalIsOpen:false,
+    activeIndex: 0,
     bullsArray: Array.from(Array(showEach),(x,i)=>i)
   }
 
@@ -66,8 +67,8 @@ export default class Home extends Component{
     this.setState({modalIsOpen:false})
   }
 
-  openModal = () => {
-    this.setState({modalIsOpen:true})
+  openModal = (e) => {
+    this.setState({modalIsOpen:true,activeIndex: e})
   }
 
   render(){
@@ -81,7 +82,8 @@ export default class Home extends Component{
         unopenedBulls,
         unopenedBears,
         bullsArray,
-        modalIsOpen
+        modalIsOpen,
+        activeIndex
       } = this.state
 
       /*
@@ -112,7 +114,7 @@ export default class Home extends Component{
               type="BULL" 
               key={bull} 
               index={bull + 1} 
-              onClickCard={ this.handleOpenCard } 
+              onClickCard={ this.openModal } 
               /> )}
           </div> )
       )
@@ -136,7 +138,7 @@ export default class Home extends Component{
           <main>
             <div id="root">
               <div>
-                  <div className="fade modal show" style={{ display:(modalIsOpen)?"block":"none" }}>
+                  <div className="fade modal show" style={{ display:(modalIsOpen)?"block":"none",backgroundColor: "rgba(0,0,0,0.7)" }}>
                     <div className="modal-dialog modal-lg modal-dialog-centered">
                       <div className="modal-content">
                         <div className="modal-header"><button type="button" className="close" onClick={ this.closeModal }><span aria-hidden="true">×</span></button></div>
@@ -145,10 +147,11 @@ export default class Home extends Component{
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="sc-bQtKYq cIopet">
-                                            <h4>DOGGY #0</h4>
+                                            <h4>DOGGY #{ activeIndex }</h4>
                                         </div>
                                         <div className="sc-fmBCVi jLocsb" style={{ borderRadius:"10px" }}>
-                                        <img src="https://arweave.net/yrJjOZcUsIXBtKBMDM2_nLBjpMIImiDrtTlvK1Ak6K8" 
+                                        <img 
+                                        src={ `https://bullsxbears.io/results/token_${ activeIndex }.png` }
                                         alt="" 
                                         className="sc-fXEqDS cLGYmY" 
                                         style={{ width:"100%", borderRadius:"10px" }}
@@ -157,13 +160,7 @@ export default class Home extends Component{
                                     </div>
                                     <div className="col-md-1"></div>
                                     <div className="col-md-4">
-                                        <h4 className="sc-jWUzzU eevPcX">rarity score: <span>71.0756</span></h4>
-                                        <h4 className="sc-jWUzzU eevPcX">Rarity rank: <span>7034</span></h4>
                                         <div className="sc-lkgTHX kctDZO">
-                                            <div className="sc-eFegNN kPXwHm">
-                                                <h5>hats</h5>
-                                                <h6>Stuntman Helmet</h6>
-                                            </div>
                                             <div className="sc-eFegNN kPXwHm">
                                                 <h5>mouth</h5>
                                                 <h6>Beauty</h6>
