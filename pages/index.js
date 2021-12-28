@@ -26,6 +26,7 @@ export default class Home extends Component{
     unopenedBears: 9999,
     modalIsOpen:false,
     activeIndex: 0,
+    info:{},
     bullsArray: Array.from(Array(showEach),(x,i)=>i)
   }
 
@@ -64,11 +65,14 @@ export default class Home extends Component{
   }
 
   closeModal = () => {
-    this.setState({modalIsOpen:false})
+    this.setState({modalIsOpen:false,info: {},index: 0})
   }
 
-  openModal = (e) => {
-    this.setState({modalIsOpen:true,activeIndex: e})
+  openModal = async (e) => {
+    const jsonResult = await fetch(`https://bullsxbears.io/results/token_${ e }.json`)
+    const info = await jsonResult.json()
+
+    this.setState({modalIsOpen:true,activeIndex: e,info})
   }
 
   render(){
@@ -83,21 +87,17 @@ export default class Home extends Component{
         unopenedBears,
         bullsArray,
         modalIsOpen,
-        activeIndex
+        activeIndex,
+        info
       } = this.state
 
-      /*
-      const customStyles = {
-        content: {
-          top: '50%',
-          left: '50%',
-          right: 'auto',
-          bottom: 'auto',
-          marginRight: '-50%',
-          transform: 'translate(-50%, -50%)',
-        },
-      };*/
+      console.log("info",info)
 
+      let imageURL = ""
+
+      if(activeIndex > 0){
+        imageURL = `/results/token_${ activeIndex }.png`
+      }
 
       const BullsOpen = []
       const BearsOpen = []
@@ -138,7 +138,9 @@ export default class Home extends Component{
           <main>
             <div id="root">
               <div>
-                  <div className="fade modal show" style={{ display:(modalIsOpen)?"block":"none",backgroundColor: "rgba(0,0,0,0.7)" }}>
+                  <div 
+                    className="fade modal show" 
+                    style={{ display:(modalIsOpen)?"block":"none",backgroundColor: "rgba(0,0,0,0.7)" }}>
                     <div className="modal-dialog modal-lg modal-dialog-centered">
                       <div className="modal-content">
                         <div className="modal-header"><button type="button" className="close" onClick={ this.closeModal }><span aria-hidden="true">×</span></button></div>
@@ -147,46 +149,85 @@ export default class Home extends Component{
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="sc-bQtKYq cIopet">
-                                            <h4>DOGGY #{ activeIndex }</h4>
+                                            <h4>BULL #{ activeIndex }</h4>
                                         </div>
                                         <div className="sc-fmBCVi jLocsb" style={{ borderRadius:"10px" }}>
                                         <img 
-                                        src={ `https://bullsxbears.io/results/token_${ activeIndex }.png` }
+                                        src={ imageURL }
                                         alt="" 
                                         className="sc-fXEqDS cLGYmY" 
                                         style={{ width:"100%", borderRadius:"10px" }}
                                         />
-                                        </div><button className="sc-FNXRL gBCJeY">view on opensea</button>
+                                        </div><button className="sc-FNXRL gBCJeY" style={{ backgroundColor: "#00a83a" }}>Mint on Ethereum</button>
                                     </div>
                                     <div className="col-md-1"></div>
                                     <div className="col-md-4">
                                         <div className="sc-lkgTHX kctDZO">
                                             <div className="sc-eFegNN kPXwHm">
-                                                <h5>mouth</h5>
-                                                <h6>Beauty</h6>
+                                                <h5 style={{ marginTop:"10px" }}>mouth</h5>
+                                                <div style={{ 
+                                                  fontSize: "13px",
+                                                  textTransform:"capitalize"
+                                                }}>
+                                                { (info && info.mouth)? info.mouth.replace(/_/g," ").toLowerCase() :"" }
+                                                </div>
                                             </div>
                                             <div className="sc-eFegNN kPXwHm">
-                                                <h5>clothing</h5>
-                                                <h6>Iron Collar</h6>
+                                                <h5 style={{ marginTop:"10px" }}>accesories</h5>
+                                                <div style={{ 
+                                                  fontSize: "13px",
+                                                  textTransform:"capitalize"
+                                                }}>
+                                                { (info && info.accesories)? info.accesories.replace(/_/g," ").toLowerCase() :"" }
+                                                </div>
                                             </div>
                                             <div className="sc-eFegNN kPXwHm">
-                                                <h5>fur</h5>
-                                                <h6>Blue</h6>
+                                                <h5 style={{ marginTop:"10px" }}>skin</h5>
+                                                <div style={{ 
+                                                  fontSize: "13px",
+                                                  textTransform:"capitalize"
+                                                }}>
+                                                { (info && info.skin)? info.skin.replace(/_/g," ").toLowerCase() :"" }
+                                                </div>
                                             </div>
                                             <div className="sc-eFegNN kPXwHm">
-                                                <h5>eyewear</h5>
-                                                <h6>Polarized</h6>
+                                                <h5 style={{ marginTop:"10px" }}>body</h5>
+                                                <div style={{ 
+                                                  fontSize: "13px",
+                                                  textTransform:"capitalize"
+                                                }}>
+                                                { (info && info.body)? info.body.replace(/_/g," ").toLowerCase() :"" }
+                                                </div>
                                             </div>
                                             <div className="sc-eFegNN kPXwHm">
-                                                <h5>background</h5>
-                                                <h6>Gray</h6>
+                                                <h5 style={{ marginTop:"10px" }}>background</h5>
+                                                <div style={{ 
+                                                  fontSize: "13px",
+                                                  textTransform:"capitalize"
+                                                }}>
+                                                { (info && info.background)? info.background.replace(/_/g," ").toLowerCase() :"" }
+                                                </div>
                                             </div>
                                             <div className="sc-eFegNN kPXwHm">
-                                                <h5>eyes</h5>
-                                                <h6>Covered</h6>
+                                                <h5 style={{ marginTop:"10px" }}>eyes</h5>
+                                                <div style={{ 
+                                                  fontSize: "13px",
+                                                  textTransform:"capitalize"
+                                                }}>
+                                                { (info && info.eyes)? info.eyes.replace(/_/g," ").toLowerCase() :"" }
+                                                </div>
+                                            </div>
+                                            <div className="sc-eFegNN kPXwHm">
+                                                <h5 style={{ marginTop:"10px" }}>head</h5>
+                                                <div style={{ 
+                                                  fontSize: "13px",
+                                                  textTransform:"capitalize"
+                                                }}>
+                                                { (info && info.head)? info.head.replace(/_/g," ").toLowerCase() :"" }
+                                                </div>
                                             </div>
                                         </div>
-                                        <h4 className="sc-jWUzzU eevPcX">PUPPY: <span>Not Minted</span></h4>
+                                        <h4 className="sc-jWUzzU eevPcX">BULL: <span>Not Minted</span></h4>
                                     </div>
                                 </div>
                             </div>
