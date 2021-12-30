@@ -70,8 +70,8 @@ export default class Home extends Component{
   }
 
   openModal = async (e) => {
-    //const jsonResult = await fetch(`https://bullsxbears.io/results/token_${ e }.json`)
-    const jsonResult = await fetch(`http://localhost:3000/results/token_${ e }.json`)
+    const jsonResult = await fetch(`https://bullsxbears.io/results/token_${ e }.json`)
+    //const jsonResult = await fetch(`http://localhost:3000/results/token_${ e }.json`)
     const info = await jsonResult.json()
 
     this.setState({modalIsOpen:true,activeIndex: e,info})
