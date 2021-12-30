@@ -208,7 +208,9 @@ export default class Home extends Component{
                                         <div className="sc-fmBCVi jLocsb" style={{ borderRadius:"10px" }}>
                                         <img 
                                         src={ imageURL }
-                                        alt="" 
+                                        alt={ `bull_${ activeIndex }` }
+                                        key={ activeIndex } 
+                                        id={ `bull_${ activeIndex }` } 
                                         className="sc-fXEqDS cLGYmY" 
                                         style={{ width:"100%", borderRadius:"10px" }}
                                         />
