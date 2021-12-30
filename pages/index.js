@@ -66,11 +66,12 @@ export default class Home extends Component{
   }
 
   closeModal = () => {
-    this.setState({modalIsOpen:false,info: {},index: 0})
+    this.setState({modalIsOpen:false,info: {},index: 0,imageURL: ""})
   }
 
   openModal = async (e) => {
-    const jsonResult = await fetch(`https://bullsxbears.io/results/token_${ e }.json`)
+    //const jsonResult = await fetch(`https://bullsxbears.io/results/token_${ e }.json`)
+    const jsonResult = await fetch(`http://localhost:3000/results/token_${ e }.json`)
     const info = await jsonResult.json()
 
     this.setState({modalIsOpen:true,activeIndex: e,info})
@@ -190,7 +191,10 @@ export default class Home extends Component{
               <div>
                   <div 
                     className="fade modal show" 
-                    style={{ display:(modalIsOpen)?"block":"none",backgroundColor: "rgba(0,0,0,0.7)" }}>
+                    style={{ 
+                      display:(modalIsOpen)?"block":"none",
+                      backgroundColor: "rgba(0,0,0,0.7)"
+                      }}>
                     <div className="modal-dialog modal-lg modal-dialog-centered">
                       <div className="modal-content">
                         <div className="modal-header"><button type="button" className="close" onClick={ this.closeModal }><span aria-hidden="true">×</span></button></div>
