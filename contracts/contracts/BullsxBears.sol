@@ -18,7 +18,7 @@ contract BullsxBears is ERC721URIStorage {
 
     function mintNFT(address _to, string memory tokenURI) public returns (uint256) {
         
-        require( tokenCounter < maxTokenSupply,'Ledger Coin Max Supply is 1,444');
+        require( tokenCounter < maxTokenSupply,'BullsxBears Max Supply is 9999');
         
         uint256 newItemId = tokenCounter;
         _safeMint(_to, newItemId);
