@@ -77,22 +77,22 @@ const data = {
 //        BODY_YELLOWWINGS: 131
     },
     skin: {
-        SKIN_BLUE: 1068,
-        SKIN_BROWN: 1668,
-        SKIN_COW: 768,
-        SKIN_DEEPSEA: 1068,
-        SKIN_DIAMOND: 139,
-        SKIN_GALAXY: 336,
-        SKIN_GOLD: 209,
-        SKIN_GRADATION: 609,
-        SKIN_LEOPARD: 595,
-        SKIN_MUTANT: 590,
-        SKIN_ORANGE: 441,
-        SKIN_PINK: 436,
-        SKIN_POLKADOT: 389,
-        SKIN_RAINBOW: 465,
-        SKIN_STONE: 553,
-        SKIN_ZEBRA: 665
+        SKIN_HYBRID_BLUE: 1068,
+        SKIN_HYBRID_BROWN:1668,
+        SKIN_HYBRID_COW:768,
+        SKIN_HYBRID_DEEPSEA:1068,
+        SKIN_HYBRID_DIAMOND:139,
+        SKIN_HYBRID_GALAXY:336,
+        SKIN_HYBRID_GOLD:209,
+        SKIN_HYBRID_GRADATION:609,
+        SKIN_HYBRID_LEOPARD:595,
+        SKIN_HYBRID_MUTANT:590,
+        SKIN_HYBRID_ORANGE:441,
+        SKIN_HYBRID_PINK:436,
+        SKIN_HYBRID_POLKADOT:389,
+        SKIN_HYBRID_RAINBOW:465,
+        SKIN_HYBRID_STONE:553,
+        SKIN_HYBRIDZEBRA:665
     },
     head: {
         EMPTY: 1939,
@@ -299,7 +299,7 @@ const merge = async (i,toMerge,metadata) => {
         .then(b64 => {
           var base64Data = b64.replace(/^data:image\/png;base64,/, "")
 
-          const token = `results/token_${ i + 1 }`
+          const token = `hybrids/token_${ i + 1 }`
           
           fs.writeFileSync(`${token}.png`, base64Data, 'base64')
           fs.writeFileSync(`${token}.json`, JSON.stringify(metadata))
@@ -329,8 +329,7 @@ const generate = async (i) => {
         head:headImage,
         accesories:accesoriesImage,
         mouth:mouthImage,
-        wings: wingsImage,
-        attack: getRandomInt(1, 15)
+        wings: wingsImage
     }
 
     bulls.push(metadata)
