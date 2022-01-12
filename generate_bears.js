@@ -299,7 +299,7 @@ const merge = async (i,toMerge,metadata) => {
         .then(b64 => {
           var base64Data = b64.replace(/^data:image\/png;base64,/, "")
 
-          const token = `results/bear_${ i + 1 }`
+          const token = `bears/token_${ i + 1 }`
           
           fs.writeFileSync(`${token}.png`, base64Data, 'base64')
           fs.writeFileSync(`${token}.json`, JSON.stringify(metadata))
