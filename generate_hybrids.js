@@ -13,15 +13,12 @@ const traitList = ["background", "skin", "body", "head", "eyes", "accesories", "
 
 const data = {
     accesories: {
-        EMPTY: 3905,
-        ACC_GOLDEN_HORN: 1349,
-        ACC_GOLDEN_BTC: 669,
+        EMPTY: 5502,
+        ACC_GOLDEN_BTC: 2018,
         ACC_GOLDEN_ETH: 1124,
-        ACC_GOLDEN_HORN2: 98,
         ACC_infinity_stone: 8,
         ACC_PAJIRT: 528,
-        ACC_scar: 721,
-        ACC_SILVER_HORN: 1597
+        ACC_scar: 819
     },
     background: {
         ALEXANDRITE: 509,
