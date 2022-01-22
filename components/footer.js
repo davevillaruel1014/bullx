@@ -4,21 +4,25 @@ export default function Footer(props) {
                 <div className="container">
                     <div className="footer-logo">
                         <a href="#section1">
-                            <img src="favicon.png" alt="Baby Ghosts NFT. collection" />
+                            <img src="img/logo-footer.png" alt="BullsxBears collection" style={{ width:"70px" }}/>
                         </a>
                     </div>
-                    <ul className="footer-btns">
-                        <li style={{ listStyle: "none" }}><a href="https://discord.gg/BabyGhosts" target="_blank" rel="noreferrer" className="btn-outline"><span className="btn-inner">10k MEMBERS <span className="icon-discord1 icon"></span></span></a></li>
-                        <li style={{ listStyle: "none" }}><a href="https://twitter.com/BabyGhosts_NFT" target="_blank" rel="noreferrer" className="btn-outline btn-twitter"><span className="btn-inner">11k FOLLOWERS <span className="icon-twitter1 icon"></span></span></a></li>
+                    <ul className="footer-btns" style={{ marginLeft: "120px" }}>
+                        <li style={{ listStyle: "none" }}><a href="#" target="_blank" rel="noreferrer" className="btn-outline"><span className="btn-inner">10k MEMBERS <span><img src="img/discord.png" alt="" />
+                         </span></span></a></li>
+                        <li style={{ listStyle: "none" }}><a href="#" target="_blank" rel="noreferrer" className="btn-outline btn-twitter"><span className="btn-inner">11k FOLLOWERS <span className="icon-twitter1 icon"><img src="img/twitter.png" alt="" /></span></span></a></li>
                     </ul>
                     <ul className="footer-nav">
-                        <li style={{ listStyle: "none" }}><a href="https://opensea.io/collection/babyghosts" target="_blank" rel="noreferrer">
+                        <li style={{ listStyle: "none" }}><a href="#" target="_blank" rel="noreferrer">
+                            <img src="img/youtube.png" alt="Opensea" />
+                        </a></li>
+                        <li style={{ listStyle: "none" }}><a href="#" target="_blank" rel="noreferrer">
                             <img src="img/opensea.svg" alt="Opensea" />
                         </a></li>
-                        <li style={{ listStyle: "none" }}><a href="https://discord.gg/BabyGhosts" target="_blank" rel="noreferrer">
+                        <li style={{ listStyle: "none" }}><a href="#" target="_blank" rel="noreferrer">
                             <img src="img/discord.svg" alt="discord" />
                         </a></li>
-                        <li style={{ listStyle: "none" }}><a href="https://twitter.com/BabyGhosts_NFT" target="_blank" rel="noreferrer" onclick="return!1">
+                        <li style={{ listStyle: "none" }}><a href="#" target="_blank" rel="noreferrer" onclick="return!1">
                             <img src="img/twitter.svg" alt="Twitter" />
                         </a></li>
                     </ul>

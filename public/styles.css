@@ -411,11 +411,6 @@ button.close {
         vertical-align: top
     }
 
-    .btn-primary {
-        min-width: 317px;
-        display: inline-block;
-        vertical-align: top
-    }
 
     .banner-text {
         padding: 22px 27px;
@@ -452,11 +447,6 @@ button.close {
         max-width: 300px
     }
 
-    .btn,
-    button[type=submit].btn {
-        min-width: 230px;
-        font-size: 14px
-    }
 
     .btn-blue {
         letter-spacing: 1.4px;
@@ -954,12 +944,6 @@ button.close {
         top: 34px
     }
 
-    .btn,
-    button[type=submit].btn {
-        font-size: 16px;
-        min-width: 253px;
-        padding: 24px 15px
-    }
 
     .button-holder {
         margin-bottom: 51px;
@@ -1030,7 +1014,7 @@ button.close {
         margin: 0;
         margin-right: -8px;
         -ms-flex-preferred-size: 150px;
-        flex-basis: 150px
+        flex-basis: 250px
     }
 
     .copyright {
