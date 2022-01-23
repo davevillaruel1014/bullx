@@ -2,33 +2,33 @@ import React, { Component } from "react"
 
 export default class Header extends Component {
 
-  constructor(props) {
-    super(props)
-  }
+    constructor(props) {
+        super(props)
+    }
 
-  state = {
-    bullsActive: true
-  }
+    state = {
+        bullsActive: true
+    }
 
-  handleBullBtn = (e) => {
-    e.preventDefault()
-    this.props.handleBullActive(true)
-    this.setState({ bullsActive:true })
-  }
+    handleBullBtn = (e) => {
+        e.preventDefault()
+        this.props.handleBullActive(true)
+        this.setState({ bullsActive: true })
+    }
 
-  handleBearBtn = (e) => {
-    e.preventDefault()
-    this.props.handleBullActive(false)
-    this.setState({ bullsActive:false })
-  }
+    handleBearBtn = (e) => {
+        e.preventDefault()
+        this.props.handleBullActive(false)
+        this.setState({ bullsActive: false })
+    }
 
-  render(){
-    const {
-      bullsActive
-    } = this.state
+    render() {
+        const {
+            bullsActive
+        } = this.state
 
-    return (
-    <div className="sc-gKclnd gOquVo">
+        return (
+            <div className="sc-gKclnd gOquVo">
         <nav style={{ zIndex:"10" }} className="menu-area navbar-dark bg-darks navbar navbar-expand-lg navbar-light">
             <div className="container">
                 <div style={{width:"100%"}} className="m-0 row">
@@ -58,7 +58,16 @@ export default class Header extends Component {
                                     onClick={ this.handleBearBtn }
                                     >Bears</a>
                                   </div>
-                                  <a className="sc-pVTFL gkCPqg nav-link" href="#">hibrids</a>
+                                  <a 
+                                  className="sc-pVTFL gkCPqg nav-link" 
+                                  href="#"
+                                  style={{
+                                    background: "linear-gradient(90deg, rgba(0,255,0,1) 30%, rgba(255,94,88,1) 70%)",
+                                    "background-clip": "text",
+                                    "-webkit-text-fill-color": "transparent",
+                                    color: "white"
+                                   }}
+                                  >hibrids</a>
                                   <a className="sc-pVTFL gkCPqg nav-link" href="#">merch</a>
                                   <a className="sc-pVTFL gkCPqg nav-link" href="#">app</a>
                                   
@@ -77,7 +86,6 @@ export default class Header extends Component {
             </div>
         </nav>
     </div>
-    )
-  }
+        )
+    }
 }
-

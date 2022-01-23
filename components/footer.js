@@ -3,7 +3,7 @@ export default function Footer(props) {
             <div className="footer-block">
                 <div className="container">
                     <div className="footer-logo">
-                        <a href="#section1">
+                        <a href="#">
                             <img src="img/logo-footer.png" alt="BullsxBears collection" style={{ width:"70px" }}/>
                         </a>
                     </div>
