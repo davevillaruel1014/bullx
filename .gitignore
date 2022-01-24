@@ -7,6 +7,9 @@
 .pnp.js
 /results/
 /public/results/
+/public/bulls/
+/public/bears/
+/public/hybrids/
 # testing
 /coverage
 
