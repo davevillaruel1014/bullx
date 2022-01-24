@@ -70,8 +70,8 @@ export default class Home extends Component{
   }
 
   openModal = async (e) => {
-    const jsonResult = await fetch(`https://bullsxbears.io/results/token_${ e }.json`)
-    //const jsonResult = await fetch(`http://localhost:3000/results/token_${ e }.json`)
+    //const jsonResult = await fetch(`https://bullsxbears.io/results/token_${ e }.json`)
+    const jsonResult = await fetch(`http://localhost:3000/bulls/token_${ e }.json`)
     const info = await jsonResult.json()
 
     this.setState({modalIsOpen:true,activeIndex: e,info})
@@ -148,7 +148,7 @@ export default class Home extends Component{
       let imageURL = ""
 
       if(activeIndex > 0){
-        imageURL = `/results/token_${ activeIndex }.png`
+        imageURL = `/bulls/token_${ activeIndex }.png`
       }
 
       const BullsOpen = []
@@ -201,6 +201,72 @@ export default class Home extends Component{
                         <div className="show-grid modal-body">
                             <div className="sc-jHkVzv eCkbRk">
                                 <div className="row">
+                                    <div className="modal-fight">
+                                      <div className="fight-block">
+                                        <span>
+                                          <img src="img/attack.png" alt="" 
+                                          style={{ marginTop: "-20px" }}
+                                          />
+                                        </span>
+                                        <span style={{ 
+                                          display:"inline-block",
+                                          marginLeft:"10px"
+                                         }}>
+                                          <div style={{
+                                            color:"rgb(72, 188, 30)",
+                                            fontWeight:"bold"
+                                          }}>BULL #{ activeIndex }</div>
+                                          <div style={{
+                                            fontWeight:"bold"
+                                          }}>ATTACK{ " " }
+                                          { (info && info.attack)? info.attack :"" }{" "}
+                                           of 15</div>
+                                        </span>
+                                      </div>
+                                      <div className="fight-block">
+                                        <div class="progress-container">
+                                            <div class="progress-skill progress-attack"
+                                            style={{ width: ((((info && info.attack)? info.attack :0)*100)/15) + "%" }}
+                                            >
+                                            { (info && info.attack)? info.attack :"" }{" "}
+                                            /15</div>
+                                        </div>
+                                      </div>
+                                      <div className="fight-block" style={{textAlign:"center"}}>
+                                        <img src="img/versus.png" alt="" />
+                                      </div>
+                                      <div className="fight-block">
+                                        <span>
+                                          <img src="img/defense.png" alt="" 
+                                          style={{ marginTop: "-20px" }}
+                                          />
+                                        </span>
+                                        <span style={{ 
+                                          display:"inline-block",
+                                          marginLeft:"10px"
+                                         }}>
+                                          <div style={{
+                                            color:"#ff5555",
+                                            fontWeight:"bold"
+                                          }}>BEAR #{ activeIndex }</div>
+                                          <div style={{
+                                            fontWeight:"bold"
+                                          }}>DEFENSE 25 OF 25</div>
+                                        </span>
+                                      </div>
+                                      <div className="fight-block">
+                                        <div class="progress-container">
+                                            <div class="progress-skill progress-defense"
+                                            style={{ width:"100%" }}
+                                            >25/25</div>
+                                        </div>
+                                      </div>
+                                      <div className="fight-button">
+                                        <img src="img/see_the_fight.png" alt="" 
+                                        style={{ cursor:"pointer" }}
+                                        />
+                                      </div>
+                                    </div>
                                     <div className="col-md-6">
                                         <div className="sc-bQtKYq cIopet">
                                             <h4>BULL #{ activeIndex }</h4>
@@ -223,6 +289,7 @@ export default class Home extends Component{
                                                 <h5 style={{ marginTop:"10px" }}>mouth</h5>
                                                 <div style={{ 
                                                   fontSize: "13px",
+                                                  width:"120px",
                                                   textTransform:"capitalize"
                                                 }}>
                                                 { (info && info.mouth)? info.mouth.replace(/_/g," ").toLowerCase() :"" }
@@ -232,6 +299,7 @@ export default class Home extends Component{
                                                 <h5 style={{ marginTop:"10px" }}>accesories</h5>
                                                 <div style={{ 
                                                   fontSize: "13px",
+                                                  width:"120px",
                                                   textTransform:"capitalize"
                                                 }}>
                                                 { (info && info.accesories)? info.accesories.replace(/_/g," ").toLowerCase() :"" }
@@ -241,6 +309,7 @@ export default class Home extends Component{
                                                 <h5 style={{ marginTop:"10px" }}>skin</h5>
                                                 <div style={{ 
                                                   fontSize: "13px",
+                                                  width:"120px",
                                                   textTransform:"capitalize"
                                                 }}>
                                                 { (info && info.skin)? info.skin.replace(/_/g," ").toLowerCase() :"" }
@@ -250,6 +319,7 @@ export default class Home extends Component{
                                                 <h5 style={{ marginTop:"10px" }}>body</h5>
                                                 <div style={{ 
                                                   fontSize: "13px",
+                                                  width:"120px",
                                                   textTransform:"capitalize"
                                                 }}>
                                                 { (info && info.body)? info.body.replace(/_/g," ").toLowerCase() :"" }
@@ -259,6 +329,7 @@ export default class Home extends Component{
                                                 <h5 style={{ marginTop:"10px" }}>background</h5>
                                                 <div style={{ 
                                                   fontSize: "13px",
+                                                  width:"120px",
                                                   textTransform:"capitalize"
                                                 }}>
                                                 { (info && info.background)? info.background.replace(/_/g," ").toLowerCase() :"" }
@@ -268,6 +339,7 @@ export default class Home extends Component{
                                                 <h5 style={{ marginTop:"10px" }}>eyes</h5>
                                                 <div style={{ 
                                                   fontSize: "13px",
+                                                  width:"120px",
                                                   textTransform:"capitalize"
                                                 }}>
                                                 { (info && info.eyes)? info.eyes.replace(/_/g," ").toLowerCase() :"" }
@@ -277,6 +349,7 @@ export default class Home extends Component{
                                                 <h5 style={{ marginTop:"10px" }}>head</h5>
                                                 <div style={{ 
                                                   fontSize: "13px",
+                                                  width:"120px",
                                                   textTransform:"capitalize"
                                                 }}>
                                                 { (info && info.head)? info.head.replace(/_/g," ").toLowerCase() :"" }

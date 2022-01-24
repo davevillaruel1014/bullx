@@ -1474,7 +1474,7 @@ body {
 }
 
 .modal-content {
-    background: #121212;
+    background: #0a0a0a;
     border-radius: 5px !important;
     position: relative;
     display: flex;
@@ -1484,6 +1484,45 @@ body {
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, .2);
     outline: 0;
+}
+
+.modal-fight {
+    position: absolute;
+    right: 30px;
+    top: 40px;
+    width: 250px;
+    background: #111;
+    padding: 1rem;
+}
+
+.fight-block {
+    margin-bottom: 20px;
+}
+
+.progress-container {
+    background-color: rgb(192, 192, 192);
+    width: 100%;
+    border-radius: 15px;
+}
+
+.progress-skill {
+    color: white;
+    padding: 1%;
+    text-align: right;
+    font-size: 12px;
+    border-radius: 15px;
+    padding-right: 10px;
+    font-weight: bold;
+    min-width: 38px;
+}
+
+.progress-attack {
+    background-color: rgb(116, 194, 92);
+    color: darkgreen;
+}
+
+.progress-defense {
+    background-color: #ff2250;
 }
 
 .modal-header {
@@ -1574,7 +1613,7 @@ button.close {
 .eevPcX {
     font-size: 20px;
     text-transform: capitalize;
-    margin-bottom: 20px;
+    margin-top: 60px;
 }
 
 .eevPcX span {
