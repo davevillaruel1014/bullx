@@ -3011,7 +3011,6 @@ button::-moz-focus-inner {
 .navbar-collapse {
     flex-basis: 100%;
     flex-grow: 1;
-    align-items: center
 }
 
 .navbar-toggler {
@@ -3473,5 +3472,15 @@ a:hover {
     align-items: center;
     -moz-box-pack: center;
     justify-content: center
+}
+
+
+.collapsing {
+  position: relative;
+  height: 0;
+  overflow: hidden;
+  transition: height .35s ease;
+  flex-basis: 100%;
+  flex-grow: 1;
 }
 
