@@ -7,7 +7,8 @@ export default class Header extends Component {
     }
 
     state = {
-        bullsActive: true
+        bullsActive: true,
+        mobileMenu: ""
     }
 
     handleBullBtn = (e) => {
@@ -22,9 +23,16 @@ export default class Header extends Component {
         this.setState({ bullsActive: false })
     }
 
+    toggleMobileMenu = () => {
+      (this.state.mobileMenu === "show")?
+        this.setState({ mobileMenu: ""}):
+        this.setState({ mobileMenu: "show"})
+    }
+
     render() {
         const {
-            bullsActive
+            bullsActive,
+            mobileMenu
         } = this.state
 
         return (
@@ -35,7 +43,8 @@ export default class Header extends Component {
                     <div style={{padding:"0px"}} className="col-lg-2"><a className="sc-iqseJM kOLQGP" href="https://bullsxbears.io/">
                     <img src="img/logo.png" className="sc-jrQzAO kAzuCl" /></a></div>
                     <div style={{display:"flex",padding:"0px"}} className="pt-0 col-lg-10">
-                        <div className="navbar-collapse collapse" id="responsive-navbar-nav">
+                        <button onClick={this.toggleMobileMenu } aria-controls="responsive-navbar-nav" type="button" aria-label="Toggle navigation" className="navbar-toggler"><span className="navbar-toggler-icon"></span></button>
+                        <div className={ `navbar-collapse collapse ${ mobileMenu }` } id="responsive-navbar-nav">
                             <div className="sc-kDTinF ljDPtM navbar-nav">
                                 <div className="nav-item dropdown">
                                   <a 
@@ -65,7 +74,8 @@ export default class Header extends Component {
                                     background: "linear-gradient(90deg, rgba(0,255,0,1) 30%, rgba(255,94,88,1) 70%)",
                                     "background-clip": "text",
                                     "-webkit-text-fill-color": "transparent",
-                                    color: "white"
+                                    color: "white",
+                                    maxWidth:"66px"
                                    }}
                                   >hibrids</a>
                                   <a className="sc-pVTFL gkCPqg nav-link" href="#">merch</a>
