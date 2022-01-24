@@ -29,6 +29,7 @@ export default class Home extends Component{
     info:{},
     bearInfo:{},
     connectBtnText: "CONNECT WALLET",
+    attackOptionsOpen:"",
     bullsArray: Array.from(Array(showEach),(x,i)=>i)
   }
 
@@ -71,9 +72,10 @@ export default class Home extends Component{
   }
 
   openModal = async (e) => {
-    const jsonResult = await fetch(`https://bullsxbears.io/bulls/token_${ e }.json`)
-    const jsonBearsResult = await fetch(`https://bullsxbears.io/bears/token_${ e }.json`)
-    //const jsonResult = await fetch(`http://localhost:3000/bulls/token_${ e }.json`)
+    //const jsonResult = await fetch(`https://bullsxbears.io/bulls/token_${ e }.json`)
+    //const jsonBearsResult = await fetch(`https://bullsxbears.io/bears/token_${ e }.json`)
+    const jsonResult = await fetch(`http://localhost:3000/bulls/token_${ e }.json`)
+    const jsonBearsResult = await fetch(`http://localhost:3000/bears/token_${ e }.json`)
     const info = await jsonResult.json()
     const bearInfo = await jsonBearsResult.json()
 
@@ -133,6 +135,13 @@ export default class Home extends Component{
       }
   }
 
+  openAttackOptions = () => {
+    this.setState({ attackOptionsOpen: "options-open" })
+  }
+
+  closeAttackOptions = () => {
+    this.setState({ attackOptionsOpen: "" }) 
+  }
 
   render(){
 
@@ -141,6 +150,7 @@ export default class Home extends Component{
         bullsActive,
         active,
         inactive,
+        attackOptionsOpen,
         searchValue,
         unopenedBulls,
         unopenedBears,
@@ -210,7 +220,8 @@ export default class Home extends Component{
                         <div className="show-grid modal-body">
                             <div className="sc-jHkVzv eCkbRk">
                                 <div className="row">
-                                    <div className="modal-fight">
+                                    <div className={ `modal-fight ${ attackOptionsOpen }` }>
+                                      <div className="close-options"><button type="button" className="close" onClick={ this.closeAttackOptions }><span aria-hidden="true">×</span></button></div>
                                       <div className="fight-block">
                                         <span>
                                           <img src="img/attack.png" alt="" 
@@ -274,7 +285,7 @@ export default class Home extends Component{
                                             /25</div>
                                         </div>
                                       </div>
-                                      <div className="fight-button">
+                                      <div className="fight-button" style={{ textAlign:"center", paddingTop: "10px" }}>
                                         <img src="img/see_the_fight.png" alt="" 
                                         style={{ cursor:"pointer" }}
                                         />
@@ -293,7 +304,16 @@ export default class Home extends Component{
                                         className="sc-fXEqDS cLGYmY" 
                                         style={{ width:"100%", borderRadius:"10px" }}
                                         />
-                                        </div><button className="sc-FNXRL gBCJeY" style={{ backgroundColor: "#00a83a" }}>Mint on Ethereum</button>
+                                        </div>
+                                        <button
+                                        className="sc-FNXRL gBCJeY" 
+                                        style={{ backgroundColor: "#00a83a" }}>
+                                        Mint on Ethereum
+                                        </button>
+                                        <img onClick={ this.openAttackOptions } className="attack-options" src="img/attack.png" alt="Attack options" 
+                                          style={{ marginTop: "10px", float:"right",cursor:"pointer" }}
+                                          title="See attack options"
+                                          />
                                     </div>
                                     <div className="col-md-1"></div>
                                     <div className="col-md-4">
@@ -389,7 +409,7 @@ export default class Home extends Component{
                               <div className="sc-dOpZeA emtXXD">
                                   <div className="infinite-scroll-component__outerdiv">
                                       <div className="infinite-scroll-component" style={{height:"auto",overflow:"hidden"}}>
-                                          <div className="row">
+                                          <div className="row title">
                                               <div className="col-md-3">
                                                   <h1 className="sc-jaskfy fHfkXz">{ (bullsActive)?"Bulls":"Bears" }</h1>
                                               </div>
