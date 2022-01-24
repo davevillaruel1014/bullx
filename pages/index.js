@@ -261,7 +261,7 @@ export default class Home extends Component{
                                           <div style={{
                                             fontWeight:"bold"
                                           }}>DEFENSE{ " " }
-                                          { (bearInfo && bearInfo.defense)? info.defense :"" }{" "}
+                                          { (bearInfo && bearInfo.defense)? bearInfo.defense :"" }{" "}
                                            of 25</div>
                                         </span>
                                       </div>
