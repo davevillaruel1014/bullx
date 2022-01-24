@@ -27,6 +27,7 @@ export default class Home extends Component{
     modalIsOpen:false,
     activeIndex: 0,
     info:{},
+    bearInfo:{},
     connectBtnText: "CONNECT WALLET",
     bullsArray: Array.from(Array(showEach),(x,i)=>i)
   }
@@ -71,10 +72,17 @@ export default class Home extends Component{
 
   openModal = async (e) => {
     const jsonResult = await fetch(`https://bullsxbears.io/bulls/token_${ e }.json`)
+    const jsonBearsResult = await fetch(`https://bullsxbears.io/bears/token_${ e }.json`)
     //const jsonResult = await fetch(`http://localhost:3000/bulls/token_${ e }.json`)
     const info = await jsonResult.json()
+    const bearInfo = await jsonBearsResult.json()
 
-    this.setState({modalIsOpen:true,activeIndex: e,info})
+    this.setState({
+      modalIsOpen:true,
+      activeIndex: e,
+      info,
+      bearInfo
+    })
   }
 
   updateConnectButton = () => {
@@ -140,10 +148,11 @@ export default class Home extends Component{
         modalIsOpen,
         activeIndex,
         info,
+        bearInfo,
         connectBtnText
       } = this.state
 
-      console.log("info",info)
+      console.log("info",info,bearInfo)
 
       let imageURL = ""
 
@@ -251,14 +260,18 @@ export default class Home extends Component{
                                           }}>BEAR #{ activeIndex }</div>
                                           <div style={{
                                             fontWeight:"bold"
-                                          }}>DEFENSE 25 OF 25</div>
+                                          }}>DEFENSE{ " " }
+                                          { (bearInfo && bearInfo.defense)? info.defense :"" }{" "}
+                                           of 25</div>
                                         </span>
                                       </div>
                                       <div className="fight-block">
                                         <div class="progress-container">
                                             <div class="progress-skill progress-defense"
-                                            style={{ width:"100%" }}
-                                            >25/25</div>
+                                            style={{ width: ((((bearInfo && bearInfo.defense)? bearInfo.defense :0)*100)/25) + "%" }}
+                                            >
+                                            { (bearInfo && bearInfo.defense)? bearInfo.defense :"" }{" "}
+                                            /25</div>
                                         </div>
                                       </div>
                                       <div className="fight-button">
