@@ -39,7 +39,7 @@ export default class Header extends Component {
             <div className="sc-gKclnd gOquVo">
         <nav style={{ zIndex:"10" }} className="menu-area navbar-dark bg-darks navbar navbar-expand-lg navbar-light">
             <div className="container">
-                <div style={{width:"100%"}} className="m-0 row">
+                <div style={{width:"100%", flexWrap: "wrap"}} className="m-0 row">
                     <div style={{padding:"0px"}} className="col-lg-2"><a className="sc-iqseJM kOLQGP" href="https://bullsxbears.io/">
                     <img src="img/logo.png" className="sc-jrQzAO kAzuCl" /></a></div>
                     <div style={{display:"flex",padding:"0px"}} className="pt-0 col-lg-10">
