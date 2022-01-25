@@ -24,9 +24,9 @@ export default class Header extends Component {
     }
 
     toggleMobileMenu = () => {
-      (this.state.mobileMenu === "collapsing show")?
+      (this.state.mobileMenu === "navbar-collapse show")?
         this.setState({ mobileMenu: ""}):
-        this.setState({ mobileMenu: "collapsing show"})
+        this.setState({ mobileMenu: "navbar-collapse show"})
     }
 
     render() {
@@ -44,9 +44,9 @@ export default class Header extends Component {
                     <img src="img/logo.png" className="sc-jrQzAO kAzuCl" /></a></div>
                     <div style={{display:"flex",padding:"0px"}} className="pt-0 col-lg-10">
                         <button onClick={this.toggleMobileMenu } aria-controls="responsive-navbar-nav" type="button" aria-label="Toggle navigation" className="navbar-toggler"><span className="navbar-toggler-icon"></span></button>
-                        <div className={ `navbar-collapse ` + (mobileMenu === "collapsing show")? "collapsing show":"collapse" } 
+                        <div className={ `navbar-collapse ` + (mobileMenu === "navbar-collapse show")? "navbar-collapse show":"navbar-collapse collapse" }
                           id="responsive-navbar-nav"
-                          style={(mobileMenu === "collapsing show")? {height:"355px"}:{} }
+                          style={(mobileMenu === "navbar-collapse show")? {height:"355px"}:{} }
                           >
                             <div className="sc-kDTinF ljDPtM navbar-nav">
                                 <div className="nav-item dropdown">

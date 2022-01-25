@@ -3451,6 +3451,15 @@ a:hover {
         text-align: left;
         padding: 1rem 0px
     }
+
+    .navbar-collapse {
+      position: relative;
+      height: 0;
+      overflow: hidden;
+      transition: height .35s ease;
+      flex-basis: 100%;
+      flex-grow: 1;
+    }
 }
 
 .kOLQGP {
@@ -3473,14 +3482,3 @@ a:hover {
     -moz-box-pack: center;
     justify-content: center
 }
-
-
-.collapsing {
-  position: relative;
-  height: 0;
-  overflow: hidden;
-  transition: height .35s ease;
-  flex-basis: 100%;
-  flex-grow: 1;
-}
-
