@@ -253,7 +253,7 @@ export default class Home extends Component{
                                         </div>
                                       </div>
                                       <div className="fight-block" style={{textAlign:"center"}}>
-                                        <img src="img/versus.png" alt="" />
+                                        <img src="img/versus.png" alt="" width="50px"/>
                                       </div>
                                       <div className="fight-block">
                                         <span>
