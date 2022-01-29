@@ -11,7 +11,7 @@ contract BullsxBears is ERC721URIStorage {
     uint256 tokenCounter;
     uint256 maxTokenSupply;
     
-    constructor () ERC721 ("BullsxBears NFT", "BBNFT"){
+    constructor () ERC721 ("BullsxBears NFT", "BXBS"){
         tokenCounter = 0;
         maxTokenSupply = 9999;
     }
