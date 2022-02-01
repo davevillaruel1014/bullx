@@ -72,10 +72,10 @@ export default class Home extends Component{
   }
 
   openModal = async (e) => {
-    const jsonResult = await fetch(`https://bullsxbears.io/bulls/token_${ e }.json`)
-    const jsonBearsResult = await fetch(`https://bullsxbears.io/bears/token_${ e }.json`)
-    //const jsonResult = await fetch(`http://localhost:3000/bulls/token_${ e }.json`)
-    //const jsonBearsResult = await fetch(`http://localhost:3000/bears/token_${ e }.json`)
+    //const jsonResult = await fetch(`https://bullsxbears.io/bulls/token_${ e }.json`)
+    //const jsonBearsResult = await fetch(`https://bullsxbears.io/bears/token_${ e }.json`)
+    const jsonResult = await fetch(`http://localhost:3000/bulls/token_${ e }.json`)
+    const jsonBearsResult = await fetch(`http://localhost:3000/bears/token_${ e }.json`)
     const info = await jsonResult.json()
     const bearInfo = await jsonBearsResult.json()
 
@@ -390,6 +390,17 @@ export default class Home extends Component{
                                             </div>
                                         </div>
                                         <h4 className="sc-jWUzzU eevPcX">BULL: <span>Not Minted</span></h4>
+                                    </div>
+                                    <div style={{ 
+                                      width: "100%",
+                                      height: "100%",
+                                      position: "absolute",
+                                      top: "0px",
+                                      backgroundColor: "red",
+                                      left: "0",
+                                      zIndex: "99",
+                                      }}>
+                                      
                                     </div>
                                 </div>
                             </div>
