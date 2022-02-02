@@ -396,11 +396,40 @@ export default class Home extends Component{
                                       height: "100%",
                                       position: "absolute",
                                       top: "0px",
-                                      backgroundColor: "red",
+                                      backgroundColor: "black",
                                       left: "0",
                                       zIndex: "99",
                                       }}>
+                                      <div
+                                        style={{
+                                        textAlign: "center",
+                                        fontSize: "30px",
+                                        fontWeight: "bold"
+                                      }}
+                                      >
+                                      <div style={{
+                                        backgroundColor:"blue",
+                                        display:"inline-block"
+                                      }}>
+                                        <span
+                                      style={{
+                                        marginRight: "1rem"
+                                      }}
+                                      >Fight:</span>
+                                      <span
+                                      style={{
+                                        color: "green",
+                                        marginRight:"1rem"
+                                      }}
+                                      >BULL #6666</span>
+                                      <span
+                                      style={{
+                                        color: "red"
+                                      }}
+                                      >BEAR #6666</span>  
+                                      </div>
                                       
+                                      </div>  
                                     </div>
                                 </div>
                             </div>
