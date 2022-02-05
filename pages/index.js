@@ -408,27 +408,38 @@ export default class Home extends Component{
                                       }}
                                       >
                                       <div style={{
-                                        backgroundColor:"blue",
-                                        display:"inline-block"
+                                        //backgroundColor:"blue",
+                                        display:"inline-block",
+                                        position: "relative",
+                                        background: "linear-gradient(to right, red, blue)",
+                                        padding: "3px",
                                       }}>
+                                      <div
+                                      style={{
+                                        background: "black",
+                                        color: "white",
+                                        padding: "0 1rem 0 1rem"
+                                      }}
+                                      >
                                         <span
-                                      style={{
-                                        marginRight: "1rem"
-                                      }}
-                                      >Fight:</span>
-                                      <span
-                                      style={{
-                                        color: "green",
-                                        marginRight:"1rem"
-                                      }}
-                                      >BULL #6666</span>
-                                      <span
-                                      style={{
-                                        color: "red"
-                                      }}
-                                      >BEAR #6666</span>  
-                                      </div>
-                                      
+                                          style={{
+                                            marginRight: "1rem"
+                                          }}
+                                          >FIGHT:</span>
+                                          <span
+                                          style={{
+                                            color: "green",
+                                            marginRight:"1rem"
+                                          }}
+                                          >BULL #6666</span>
+                                          <span
+                                          style={{
+                                            color: "red"
+                                          }}
+                                          >BEAR #6666</span>
+
+                                          </div>
+                                        </div>
                                       </div>  
                                     </div>
                                 </div>
