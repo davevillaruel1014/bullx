@@ -74,8 +74,15 @@ export default class Home extends Component{
   openModal = async (e) => {
     //const jsonResult = await fetch(`https://bullsxbears.io/bulls/token_${ e }.json`)
     //const jsonBearsResult = await fetch(`https://bullsxbears.io/bears/token_${ e }.json`)
-    const jsonResult = await fetch(`http://localhost:3000/bulls/token_${ e }.json`)
-    const jsonBearsResult = await fetch(`http://localhost:3000/bears/token_${ e }.json`)
+    //const jsonResult = await fetch(`http://localhost:3000/bulls/token_${ e }.json`)
+    //const jsonBearsResult = await fetch(`http://localhost:3000/bears/token_${ e }.json`)
+
+    const jsonResult = await fetch(`https://bullsxbears.herokuapp.com/bulls/token_${ e }.json`)
+    const jsonBearsResult = await fetch(`https://bullsxbears.herokuapp.com/bears/token_${ e }.json`)
+
+
+    
+
     const info = await jsonResult.json()
     const bearInfo = await jsonBearsResult.json()
 
